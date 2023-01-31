@@ -10,19 +10,53 @@ import {
   InputAdornment,
   Typography,
   IconButton,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  MenuItem,
 } from "@mui/material";
+
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { ErrorNotification } from "./AddForm.styled";
+
+const currencies = [
+  {
+    value: "USD",
+    label: "$",
+  },
+  {
+    value: "EUR",
+    label: "€",
+  },
+  {
+    value: "BTC",
+    label: "฿",
+  },
+  {
+    value: "JPY",
+    label: "¥",
+  },
+];
 
 export const AddForm: React.FC = () => {
   type Inputs = {
     login: string;
     password: string;
     phone: string;
+    date: string;
+    time: string;
+    gender: string;
+    comment: string;
+    search: string;
+    select: string;
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +74,7 @@ export const AddForm: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Inputs>({ mode: "onChange" });
+  } = useForm<Inputs>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
@@ -70,10 +104,10 @@ export const AddForm: React.FC = () => {
           >
             {/* input for login */}
             <TextField
-              id="input-with-icon-textfield"
-              type="text"
+              id="email"
+              type="email"
               size="small"
-              label="Login (type=text)"
+              label="Login (type=email)"
               sx={{ width: "100%" }}
               InputProps={{
                 startAdornment: (
@@ -101,7 +135,7 @@ export const AddForm: React.FC = () => {
 
             {/* input for password */}
             <TextField
-              id="standard-adornment-password"
+              id="password"
               type={showPassword ? "text" : "password"}
               size="small"
               label="Password (type=password)"
@@ -143,7 +177,7 @@ export const AddForm: React.FC = () => {
 
             {/* input for phone */}
             <TextField
-              id="input-with-icon-textfield"
+              id="phone"
               type="tel"
               size="small"
               label="Phone (type=tel)"
@@ -157,7 +191,7 @@ export const AddForm: React.FC = () => {
               }}
               variant="standard"
               margin="dense"
-              placeholder="+380671234567"
+              placeholder="380671234567"
               {...register("phone", {
                 required: "required",
                 maxLength: { value: 13, message: "maximum 13 symbols" },
@@ -174,11 +208,109 @@ export const AddForm: React.FC = () => {
             )}
 
             {/* input for date */}
+            <TextField
+              id="date"
+              type="date"
+              size="small"
+              label="Date (type=date)"
+              sx={{ width: "100%" }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CalendarMonthIcon />
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+              margin="dense"
+              {...register("date")}
+            />
+
             {/* input for time */}
+            <TextField
+              id="time"
+              type="time"
+              size="small"
+              label="Time (type=time)"
+              sx={{ width: "100%" }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccessTimeIcon />
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+              margin="dense"
+              {...register("time")}
+            />
+            {/* input for radio */}
+
+            <FormControl>
+              <FormLabel id="form-label" sx={{ mt: 1 }}>
+                Gender (type=radio)
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="Male"
+                  {...register("gender")}
+                />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Female"
+                  {...register("gender")}
+                />
+              </RadioGroup>
+            </FormControl>
+
             {/* input for select */}
+            <TextField
+              id="select-currency"
+              select
+              label="Select (type=select)"
+              defaultValue="EUR"
+              helperText="Please select your currency"
+              variant="standard"
+              sx={{ width: "100%" }}
+              {...register("select")}
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
             {/* textarea */}
+            <TextField
+              type="text"
+              id="textarea"
+              label="Комментарий (type=textarea)"
+              placeholder="Напишите свой комментарий"
+              multiline
+              variant="standard"
+              margin="dense"
+              sx={{ width: "100%" }}
+              {...register("comment")}
+            />
+
             {/* input for search */}
-            {/* input for email */}
+            <TextField
+              type="search"
+              id="search"
+              label="Поиск (type=search)"
+              variant="standard"
+              margin="dense"
+              sx={{ width: "100%" }}
+              {...register("search")}
+            />
 
             <Button
               type="submit"
