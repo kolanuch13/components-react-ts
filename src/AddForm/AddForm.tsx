@@ -137,6 +137,7 @@ export const AddForm: React.FC = () => {
             {/* input for password */}
             <TextField
               id="password"
+              autoComplete="false"
               type={showPassword ? "text" : "password"}
               size="small"
               label="Password (type=password)"
