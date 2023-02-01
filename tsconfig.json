@@ -10,7 +10,7 @@
     "noEmitOnError": true,
     "strict": true,
     "sourceMap": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false, //видає помилку, коли є оголошена, але невикористовувана змінна
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,
