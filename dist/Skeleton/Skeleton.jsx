@@ -3,18 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Skeleton = void 0;
 const react_1 = __importDefault(require("react"));
-const Header_1 = require("Header/Header");
+const react_loader_spinner_1 = require("react-loader-spinner");
 const material_1 = require("@mui/material");
-const Skeleton_1 = require("Skeleton");
-function App() {
-    return (<material_1.Box sx={{
-            position: 'relative',
-            height: '100vh',
-        }}>
-      <Header_1.Header />
-      <Skeleton_1.Skeleton />
+const Skeleton = () => {
+    return (<material_1.Box>
+      <react_loader_spinner_1.RotatingLines />
     </material_1.Box>);
-}
-exports.default = App;
-//# sourceMappingURL=App.jsx.map
+};
+exports.Skeleton = Skeleton;
+//# sourceMappingURL=Skeleton.jsx.map

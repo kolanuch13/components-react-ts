@@ -1,37 +1,37 @@
-import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
-import { Backdrop, ModalWindow } from "./Modal.styled";
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { Backdrop, ModalWindow } from './Modal.styled';
 
 interface IModal {
   closeModal: () => void;
   children: React.ReactNode;
 }
 
-export const Modal: React.FC<IModal> = ({ closeModal, children }) => {
+export const Modal: React.FC<IModal> = (props: IModal) => {
   useEffect(() => {
     const closeByEsc = ({ code }: KeyboardEvent): void => {
-      if (code === "Escape") {
-        closeModal();
+      if (code === 'Escape') {
+        props.closeModal();
       }
     };
 
-    window.addEventListener("keydown", closeByEsc);
+    window.addEventListener('keydown', closeByEsc);
 
     return () => {
-      window.removeEventListener("keydown", closeByEsc);
+      window.removeEventListener('keydown', closeByEsc);
     };
-  }, [closeModal]);
+  }, [props, props.closeModal]);
 
   const closeByBackdrop = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
-      closeModal();
+      props.closeModal();
     }
   };
 
-  const modalRoot = document.querySelector("#modal-root") as HTMLElement;
+  const modalRoot = document.querySelector('#modal-root') as HTMLElement;
   return createPortal(
     <Backdrop onClick={closeByBackdrop}>
-      <ModalWindow>{children}</ModalWindow>
+      <ModalWindow>{props.children}</ModalWindow>
     </Backdrop>,
     modalRoot
   );

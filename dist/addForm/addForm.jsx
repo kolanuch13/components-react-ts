@@ -35,7 +35,27 @@ const Lock_1 = __importDefault(require("@mui/icons-material/Lock"));
 const Visibility_1 = __importDefault(require("@mui/icons-material/Visibility"));
 const VisibilityOff_1 = __importDefault(require("@mui/icons-material/VisibilityOff"));
 const PhoneIphone_1 = __importDefault(require("@mui/icons-material/PhoneIphone"));
+const CalendarMonth_1 = __importDefault(require("@mui/icons-material/CalendarMonth"));
+const AccessTime_1 = __importDefault(require("@mui/icons-material/AccessTime"));
 const AddForm_styled_1 = require("./AddForm.styled");
+const currencies = [
+    {
+        value: "USD",
+        label: "$",
+    },
+    {
+        value: "EUR",
+        label: "€",
+    },
+    {
+        value: "BTC",
+        label: "฿",
+    },
+    {
+        value: "JPY",
+        label: "¥",
+    },
+];
 const AddForm = () => {
     var _a, _b, _c;
     const [showPassword, setShowPassword] = (0, react_1.useState)(false);
@@ -43,7 +63,7 @@ const AddForm = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    const { register, handleSubmit, reset, formState: { errors }, } = (0, react_hook_form_1.useForm)({ mode: "onChange" });
+    const { register, handleSubmit, reset, formState: { errors }, } = (0, react_hook_form_1.useForm)({ mode: "onBlur" });
     const onSubmit = (data) => {
         console.log(data);
         reset();
@@ -62,7 +82,7 @@ const AddForm = () => {
           </material_1.Typography>
           <material_1.Box component="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
             
-            <material_1.TextField id="input-with-icon-textfield" type="text" size="small" label="Login (type=text)" sx={{ width: "100%" }} InputProps={{
+            <material_1.TextField id="email" type="email" size="small" label="Login (type=email)" sx={{ width: "100%" }} InputProps={{
             startAdornment: (<material_1.InputAdornment position="start">
                     <Person_1.default />
                   </material_1.InputAdornment>),
@@ -79,7 +99,7 @@ const AddForm = () => {
               </AddForm_styled_1.ErrorNotification>)}
 
             
-            <material_1.TextField id="standard-adornment-password" type={showPassword ? "text" : "password"} size="small" label="Password (type=password)" sx={{ width: "100%" }} InputProps={{
+            <material_1.TextField id="password" autoComplete="false" type={showPassword ? "text" : "password"} size="small" label="Password (type=password)" sx={{ width: "100%" }} InputProps={{
             startAdornment: (<material_1.InputAdornment position="start">
                     <Lock_1.default />
                   </material_1.InputAdornment>),
@@ -97,11 +117,11 @@ const AddForm = () => {
               </AddForm_styled_1.ErrorNotification>)}
 
             
-            <material_1.TextField id="input-with-icon-textfield" type="tel" size="small" label="Phone (type=tel)" sx={{ width: "100%" }} InputProps={{
+            <material_1.TextField id="phone" type="tel" size="small" label="Phone (type=tel)" sx={{ width: "100%" }} InputProps={{
             startAdornment: (<material_1.InputAdornment position="start">
                     <PhoneIphone_1.default />
                   </material_1.InputAdornment>),
-        }} variant="standard" margin="dense" placeholder="+380671234567" {...register("phone", {
+        }} variant="standard" margin="dense" placeholder="380671234567" {...register("phone", {
         required: "required",
         maxLength: { value: 13, message: "maximum 13 symbols" },
         pattern: {
@@ -114,11 +134,42 @@ const AddForm = () => {
               </AddForm_styled_1.ErrorNotification>)}
 
             
+            <material_1.TextField id="date" type="date" size="small" label="Date (type=date)" sx={{ width: "100%" }} InputProps={{
+            startAdornment: (<material_1.InputAdornment position="start">
+                    <CalendarMonth_1.default />
+                  </material_1.InputAdornment>),
+        }} variant="standard" margin="dense" {...register("date")}/>
+
             
+            <material_1.TextField id="time" type="time" size="small" label="Time (type=time)" sx={{ width: "100%" }} InputProps={{
+            startAdornment: (<material_1.InputAdornment position="start">
+                    <AccessTime_1.default />
+                  </material_1.InputAdornment>),
+        }} variant="standard" margin="dense" {...register("time")}/>
             
+
+            <material_1.FormControl>
+              <material_1.FormLabel id="form-label" sx={{ mt: 1 }}>
+                Gender (type=radio)
+              </material_1.FormLabel>
+              <material_1.RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                <material_1.FormControlLabel value="male" control={<material_1.Radio />} label="Male" {...register("gender")}/>
+                <material_1.FormControlLabel value="female" control={<material_1.Radio />} label="Female" {...register("gender")}/>
+              </material_1.RadioGroup>
+            </material_1.FormControl>
+
             
+            <material_1.TextField id="select-currency" select label="Select (type=select)" defaultValue="EUR" helperText="Please select your currency" variant="standard" sx={{ width: "100%" }} {...register("select")}>
+              {currencies.map((option) => (<material_1.MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </material_1.MenuItem>))}
+            </material_1.TextField>
+
             
+            <material_1.TextField type="text" id="textarea" label="Комментарий (type=textarea)" placeholder="Напишите свой комментарий" multiline variant="standard" margin="dense" sx={{ width: "100%" }} {...register("comment")}/>
+
             
+            <material_1.TextField type="search" id="search" label="Поиск (type=search)" variant="standard" margin="dense" sx={{ width: "100%" }} {...register("search")}/>
 
             <material_1.Button type="submit" variant="outlined" sx={{
             width: "100%",
