@@ -8,7 +8,9 @@ const react_1 = __importDefault(require("react"));
 const react_loader_spinner_1 = require("react-loader-spinner");
 const material_1 = require("@mui/material");
 const Skeleton = () => {
-    return (<material_1.Box>
+    return (<material_1.Box sx={{
+            paddingTop: 2,
+        }}>
       <react_loader_spinner_1.RotatingLines />
     </material_1.Box>);
 };

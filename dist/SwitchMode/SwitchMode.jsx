@@ -26,40 +26,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Header = void 0;
+exports.SwitchMode = void 0;
 const react_1 = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
 const material_1 = require("@mui/material");
-const Add_1 = __importDefault(require("@mui/icons-material/Add"));
-const Modal_1 = require("Modal");
-const AddForm_1 = require("AddForm");
-const SwitchMode_1 = require("SwitchMode");
-const Header_styled_1 = require("./Header.styled");
-const Header = () => {
-    const [openModal, setOpenModal] = (0, react_1.useState)(false);
-    const openModalFormAdd = () => {
-        setOpenModal(prev => !prev);
-    };
-    const closeModalAddForm = () => {
-        setOpenModal(prev => !prev);
-    };
+const Brightness4_1 = __importDefault(require("@mui/icons-material/Brightness4"));
+const Brightness7_1 = __importDefault(require("@mui/icons-material/Brightness7"));
+const theme_1 = require("theme");
+const SwitchMode = () => {
+    const theme = (0, styles_1.useTheme)();
+    const colorMode = (0, react_1.useContext)(theme_1.ColorModeContext);
     return (<material_1.Box sx={{
             display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            width: '100%',
             alignItems: 'center',
-            paddingX: 4,
-            width: '100vw',
+            justifyContent: 'center',
+            bgcolor: 'background.default',
+            color: 'text.primary',
+            borderRadius: 1,
+            p: 3,
         }}>
-      {openModal && (<Modal_1.Modal closeModal={closeModalAddForm}>
-          <AddForm_1.AddForm />
-        </Modal_1.Modal>)}
-
-      <Header_styled_1.StyledIconButton aria-label="add information" sx={{ backgroundColor: 'green', color: '#fff' }} onClick={openModalFormAdd}>
-        <Add_1.default />
-      </Header_styled_1.StyledIconButton>
-
-      <SwitchMode_1.SwitchMode />
+      {theme.palette.mode} mode
+      <material_1.IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+        {theme.palette.mode === 'dark' ? (<Brightness7_1.default />) : (<Brightness4_1.default />)}
+      </material_1.IconButton>
     </material_1.Box>);
 };
-exports.Header = Header;
-//# sourceMappingURL=Header.jsx.map
+exports.SwitchMode = SwitchMode;
+//# sourceMappingURL=SwitchMode.jsx.map
