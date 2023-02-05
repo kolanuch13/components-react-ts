@@ -1,6 +1,9 @@
 import { createContext, useState, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+// import { useLocalStorage } from 'react-use';
 import { createTheme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
+import { toggleTheme } from 'redux/theme/themeSlice';
 
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
@@ -55,14 +58,18 @@ export const ColorModeContext = createContext<{ toggleColorMode: () => void }>({
 });
 
 export const useMode: any = () => {
-  const [mode, setMode] = useState('dark');
+  const dispatch = useDispatch();
+  const [mode, setMode] = useState<'light' | 'dark'>('light'); //треба вставити значення через useSelector
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () =>
-        setMode(prev => (prev === 'light' ? 'dark' : 'light')),
+      toggleColorMode: () => {
+        // setMode(dispatch(toggleTheme()))
+        setMode(prev => (prev === 'dark' ? 'light' : 'dark'));
+        dispatch(toggleTheme());
+      },
     }),
-    []
+    [dispatch]
   );
 
   const theme: any = useMemo(() => createTheme(themeSettings(mode)), [mode]);

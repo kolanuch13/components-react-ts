@@ -9,12 +9,12 @@ import { ColorModeContext } from 'theme';
 export const SwitchMode: React.FC = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+  console.log(theme.palette.mode);
 
   return (
     <Box
       sx={{
         display: 'flex',
-        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         bgcolor: 'background.default',

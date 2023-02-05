@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useMode = exports.ColorModeContext = void 0;
 const react_1 = require("react");
+const react_redux_1 = require("react-redux");
 const styles_1 = require("@mui/material/styles");
+const themeSlice_1 = require("redux/theme/themeSlice");
 const themeSettings = (mode) => ({
     palette: Object.assign({ mode }, (mode === 'light'
         ? {
@@ -35,10 +37,14 @@ exports.ColorModeContext = (0, react_1.createContext)({
     toggleColorMode: () => { },
 });
 const useMode = () => {
-    const [mode, setMode] = (0, react_1.useState)('dark');
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const [mode, setMode] = (0, react_1.useState)('light');
     const colorMode = (0, react_1.useMemo)(() => ({
-        toggleColorMode: () => setMode(prev => (prev === 'light' ? 'dark' : 'light')),
-    }), []);
+        toggleColorMode: () => {
+            setMode(prev => (prev === 'dark' ? 'light' : 'dark'));
+            dispatch((0, themeSlice_1.toggleTheme)());
+        },
+    }), [dispatch]);
     const theme = (0, react_1.useMemo)(() => (0, styles_1.createTheme)(themeSettings(mode)), [mode]);
     return [theme, colorMode];
 };

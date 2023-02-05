@@ -36,9 +36,9 @@ const theme_1 = require("theme");
 const SwitchMode = () => {
     const theme = (0, styles_1.useTheme)();
     const colorMode = (0, react_1.useContext)(theme_1.ColorModeContext);
+    console.log(theme.palette.mode);
     return (<material_1.Box sx={{
             display: 'flex',
-            width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
             bgcolor: 'background.default',
