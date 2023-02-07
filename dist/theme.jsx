@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useMode = exports.ColorModeContext = void 0;
+exports.useMode = void 0;
 const react_1 = require("react");
 const react_redux_1 = require("react-redux");
 const themeSelector_1 = require("redux/theme/themeSelector");
@@ -32,9 +32,6 @@ const themeSettings = (mode) => ({
         },
     },
     spacing: ['auto', 0, 2, 4, 8, 16, 32, 64, 128],
-});
-exports.ColorModeContext = (0, react_1.createContext)({
-    toggleColorMode: () => { },
 });
 const useMode = () => {
     const myTheme = (0, react_redux_1.useSelector)(themeSelector_1.selectTheme);

@@ -1,4 +1,4 @@
-import { createContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectTheme } from 'redux/theme/themeSelector';
 
@@ -53,17 +53,10 @@ const themeSettings: any = (mode: PaletteMode) => ({
   spacing: ['auto', 0, 2, 4, 8, 16, 32, 64, 128],
 });
 
-export const ColorModeContext = createContext<{ toggleColorMode: () => void }>({
-  toggleColorMode: () => {},
-});
-
 export const useMode: any = () => {
-  const myTheme = useSelector(selectTheme);
+  const myTheme: string = useSelector(selectTheme);
 
-  const theme: any = useMemo(
-    () => createTheme(themeSettings(myTheme)),
-    [myTheme]
-  );
+  const theme = useMemo(() => createTheme(themeSettings(myTheme)), [myTheme]);
 
   return [theme];
 };

@@ -13,7 +13,7 @@ const Brightness7_1 = __importDefault(require("@mui/icons-material/Brightness7")
 const SwitchMode = () => {
     const dispatch = (0, react_redux_1.useDispatch)();
     const theme = (0, styles_1.useTheme)();
-    console.log(theme.palette.mode);
+    const currentTheme = theme.palette.mode;
     return (<material_1.Box sx={{
             display: 'flex',
             alignItems: 'center',
@@ -23,9 +23,9 @@ const SwitchMode = () => {
             borderRadius: 1,
             p: 3,
         }}>
-      {theme.palette.mode} mode
+      {currentTheme} mode
       <material_1.IconButton sx={{ ml: 1 }} onClick={() => dispatch((0, themeSlice_1.toggleTheme)())} color="inherit">
-        {theme.palette.mode === 'dark' ? (<Brightness7_1.default />) : (<Brightness4_1.default />)}
+        {currentTheme === 'dark' ? <Brightness7_1.default /> : <Brightness4_1.default />}
       </material_1.IconButton>
     </material_1.Box>);
 };

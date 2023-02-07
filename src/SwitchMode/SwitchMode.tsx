@@ -9,7 +9,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 export const SwitchMode: React.FC = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  console.log(theme.palette.mode);
+  const currentTheme = theme.palette.mode;
 
   return (
     <Box
@@ -23,17 +23,13 @@ export const SwitchMode: React.FC = () => {
         p: 3,
       }}
     >
-      {theme.palette.mode} mode
+      {currentTheme} mode
       <IconButton
         sx={{ ml: 1 }}
         onClick={() => dispatch(toggleTheme())}
         color="inherit"
       >
-        {theme.palette.mode === 'dark' ? (
-          <Brightness7Icon />
-        ) : (
-          <Brightness4Icon />
-        )}
+        {currentTheme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Box>
   );
