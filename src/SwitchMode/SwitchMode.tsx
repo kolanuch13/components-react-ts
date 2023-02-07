@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleTheme } from 'redux/theme/themeSlice';
+
 import { useTheme } from '@mui/material/styles';
 import { Box, IconButton } from '@mui/material';
-
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ColorModeContext } from 'theme';
 
 export const SwitchMode: React.FC = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
   console.log(theme.palette.mode);
 
   return (
@@ -26,7 +26,7 @@ export const SwitchMode: React.FC = () => {
       {theme.palette.mode} mode
       <IconButton
         sx={{ ml: 1 }}
-        onClick={colorMode.toggleColorMode}
+        onClick={() => dispatch(toggleTheme())}
         color="inherit"
       >
         {theme.palette.mode === 'dark' ? (
