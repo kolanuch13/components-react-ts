@@ -12,7 +12,7 @@ const themeSettings = (mode) => ({
                 main: '#000',
             },
             background: {
-                default: '#fff',
+                default: '#bab6b693',
             },
         }
         : {

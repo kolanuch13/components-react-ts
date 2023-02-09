@@ -3,8 +3,8 @@ import { toggleTheme } from 'redux/theme/themeSlice';
 
 import { useTheme } from '@mui/material/styles';
 import { Box, IconButton } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 
 export const SwitchMode: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,19 +17,23 @@ export const SwitchMode: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: 'background.default',
+        bgcolor: 'transparent',
         color: 'text.primary',
         borderRadius: 1,
         p: 3,
       }}
     >
-      {currentTheme} mode
+      {/* {currentTheme} mode */}
       <IconButton
-        sx={{ ml: 1 }}
+        sx={{ ml: 1, backgroundColor: 'transparent' }}
         onClick={() => dispatch(toggleTheme())}
         color="inherit"
       >
-        {currentTheme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        {currentTheme === 'dark' ? (
+          <NightlightRoundIcon sx={{ color: 'yellow' }} />
+        ) : (
+          <WbSunnyIcon sx={{ color: 'yellow' }} />
+        )}
       </IconButton>
     </Box>
   );
