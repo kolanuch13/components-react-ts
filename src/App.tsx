@@ -1,9 +1,11 @@
+import { Routes, Route } from 'react-router-dom';
 import { useMode } from './theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Header } from 'Header/Header';
 import { Box } from '@mui/material';
 import { Skeleton } from 'Skeleton';
+import NotFoundPage from 'pages/NotFoundPage';
 
 function App() {
   const [theme] = useMode();
@@ -24,8 +26,13 @@ function App() {
           // height: '100vh',
         }}
       >
-        <Header />
-        <Skeleton />
+        <Routes>
+          <Route path="/" element={<Skeleton />} />
+          <Route path="header" element={<Header />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        {/* <Header />
+        <Skeleton /> */}
         <div>
           <p>Test TESToм поганяє 😎😉</p>
         </div>
