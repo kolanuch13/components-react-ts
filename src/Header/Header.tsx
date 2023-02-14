@@ -1,54 +1,37 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-
-import { Modal } from 'Modal';
-import { AddForm } from 'AddForm';
 import { SwitchMode } from 'SwitchMode';
-import { StyledIconButton } from './Header.styled';
 
-export const Header = () => {
-  const [openModal, setOpenModal] = useState(false);
-
-  const openModalFormAdd = (): void => {
-    setOpenModal(prev => !prev);
-  };
-
-  const closeModalAddForm = (): void => {
-    setOpenModal(prev => !prev);
-  };
-
+export const Header: FC = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingX: 4,
-        width: '100vw',
-      }}
-      // sx={{
-      //   position: 'absolute',
-      //   top: '50%',
-      //   left: '50%',
-      // }}
-    >
-      {openModal && (
-        <Modal closeModal={closeModalAddForm}>
-          <AddForm />
-        </Modal>
-      )}
-
-      <StyledIconButton
-        aria-label="add information"
-        sx={{ backgroundColor: 'green', color: '#fff' }}
-        onClick={openModalFormAdd}
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingX: 4,
+          outline: '1px solid red',
+          width: '100%',
+        }}
       >
-        <AddIcon />
-      </StyledIconButton>
-
-      <SwitchMode />
-    </Box>
+        <Box
+          component="nav"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+          }}
+        >
+          <NavLink to="/modal">Modal</NavLink>
+          <SwitchMode />
+        </Box>
+      </Box>
+      <Outlet />
+    </>
   );
 };

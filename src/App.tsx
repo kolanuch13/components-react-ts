@@ -6,6 +6,7 @@ import { Header } from 'Header/Header';
 import { Box } from '@mui/material';
 import { Skeleton } from 'Skeleton';
 import NotFoundPage from 'pages/NotFoundPage';
+import ModalPage from 'pages/ModalPage';
 
 function App() {
   const [theme] = useMode();
@@ -15,24 +16,22 @@ function App() {
       <CssBaseline />
       <Box
         sx={{
-          // position: 'relative',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          p: 3,
-          // backgroundColor: '#F9F8FD',
+          p: 4,
           width: '100vw',
-          // height: '100vh',
         }}
       >
         <Routes>
-          <Route path="/" element={<Skeleton />} />
-          <Route path="header" element={<Header />} />
+          <Route path="/" element={<Header />}>
+            <Route path="skeleton" element={<Skeleton />} />
+            <Route path="modal" element={<ModalPage />} />
+          </Route>
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        {/* <Header />
-        <Skeleton /> */}
         <div>
           <p>Test TESToм поганяє 😎😉</p>
         </div>
