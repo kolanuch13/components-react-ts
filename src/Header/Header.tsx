@@ -27,6 +27,7 @@ export const Header: FC = () => {
             width: '100%',
           }}
         >
+          <NavLink to="/">Home</NavLink>
           <NavLink to="/modal">Modal</NavLink>
           <SwitchMode />
         </Box>

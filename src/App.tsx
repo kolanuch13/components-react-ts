@@ -7,6 +7,7 @@ import { Box } from '@mui/material';
 import { Skeleton } from 'Skeleton';
 import NotFoundPage from 'pages/NotFoundPage';
 import ModalPage from 'pages/ModalPage';
+import HomePage from 'pages/HomePage';
 
 function App() {
   const [theme] = useMode();
@@ -26,6 +27,8 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Header />}>
+            <Route index element={<HomePage />} />
+
             <Route path="skeleton" element={<Skeleton />} />
             <Route path="modal" element={<ModalPage />} />
           </Route>
