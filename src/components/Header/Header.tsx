@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { SwitchMode } from 'SwitchMode';
+import { SwitchMode } from 'components/SwitchMode';
 
 export const Header: FC = () => {
   return (

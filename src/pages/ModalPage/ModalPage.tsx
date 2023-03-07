@@ -1,8 +1,8 @@
 import { useState, FC } from 'react';
 import { Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { AddForm } from 'AddForm';
-import { Modal } from 'Modal';
+import { AddForm } from 'components/AddForm';
+import { Modal } from 'components/Modal';
 import { StyledIconButton } from './ModalPage.styled';
 
 const ModalPage: FC = () => {

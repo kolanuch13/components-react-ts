@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { useMode } from './theme';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useMode } from '../theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-import { Header } from 'Header/Header';
+import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
-import { Skeleton } from 'Skeleton';
+import { Skeleton } from 'components/Skeleton';
 import NotFoundPage from 'pages/NotFoundPage';
 import ModalPage from 'pages/ModalPage';
 import HomePage from 'pages/HomePage';
@@ -38,6 +40,7 @@ function App() {
         <div>
           <p>Test TESToм поганяє 😎😉</p>
         </div>
+        <ToastContainer />
       </Box>
     </ThemeProvider>
   );
