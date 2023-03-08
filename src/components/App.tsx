@@ -5,7 +5,7 @@ import { useMode } from '../theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Header } from 'components/Header/Header';
-import { Box } from '@mui/material';
+import { Box, Typography  } from '@mui/material';
 import { Skeleton } from 'components/Skeleton';
 import NotFoundPage from 'pages/NotFoundPage';
 import ModalPage from 'pages/ModalPage';
@@ -28,18 +28,16 @@ function App() {
         }}
       >
         <Routes>
-          <Route path="/" element={<Header />}>
-            <Route index element={<HomePage />} />
-
-            <Route path="skeleton" element={<Skeleton />} />
-            <Route path="modal" element={<ModalPage />} />
-          </Route>
+          <Route index element={<HomePage />} />
+          <Route path="/" element={<Header />} />
+          <Route path="/modal" element={<ModalPage />} />
+          <Route path="/skeleton" element={<Skeleton />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <div>
-          <p>Test TESToм поганяє 😎😉</p>
-        </div>
+        <Box>
+          <Typography variant="h1">Test TESToм поганяє 😎😉</Typography>
+        </Box>
         <ToastContainer />
       </Box>
     </ThemeProvider>
