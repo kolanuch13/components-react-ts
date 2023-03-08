@@ -1,5 +1,6 @@
 {
   "name": "components-react-ts",
+  "homepage": "https://kosynskyi.github.io/components-react-ts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +12,7 @@
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.3.4",
     "cra-template-typescript": "1.2.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.0",
@@ -26,6 +28,8 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
